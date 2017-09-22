@@ -1,0 +1,174 @@
+var _trotha01$elm_webaudio$Styles_Styles$fieldset = {
+	ctor: '::',
+	_0: {ctor: '_Tuple2', _0: 'border', _1: '0'},
+	_1: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'padding', _1: '8px'},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'fontFamily', _1: 'sans-serif'},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'fontSize', _1: '16px'},
+				_1: {ctor: '[]'}
+			}
+		}
+	}
+};
+var _trotha01$elm_webaudio$Styles_Styles$text = {
+	ctor: '::',
+	_0: {ctor: '_Tuple2', _0: 'padding', _1: '16px'},
+	_1: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'align', _1: 'center'},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'fontFamily', _1: 'sans-serif'},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'fontSize', _1: '16px'},
+				_1: {ctor: '[]'}
+			}
+		}
+	}
+};
+var _trotha01$elm_webaudio$Styles_Styles$button = {
+	ctor: '::',
+	_0: {ctor: '_Tuple2', _0: 'padding', _1: '8px'},
+	_1: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'align', _1: 'center'},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'margin', _1: '16px'},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'fontFamily', _1: 'sans-serif'},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'fontSize', _1: '16px'},
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	}
+};
+var _trotha01$elm_webaudio$Styles_Styles$dropdownListItem = {
+	ctor: '::',
+	_0: {ctor: '_Tuple2', _0: 'display', _1: 'block'},
+	_1: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'padding', _1: '8px 8px'},
+		_1: {ctor: '[]'}
+	}
+};
+var _trotha01$elm_webaudio$Styles_Styles$dropdownList = {
+	ctor: '::',
+	_0: {ctor: '_Tuple2', _0: 'position', _1: 'absolute'},
+	_1: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'top', _1: '36px'},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'border-radius', _1: '4px'},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'box-shadow', _1: '0 1px 2px rgba(0,0,0,.24)'},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'padding', _1: '4px 8px'},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'margin', _1: '0'},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'width', _1: '200px'},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'background-color', _1: 'white'},
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+var _trotha01$elm_webaudio$Styles_Styles$dropdownText = {
+	ctor: '::',
+	_0: {ctor: '_Tuple2', _0: 'flex', _1: '1 0 auto'},
+	_1: {ctor: '[]'}
+};
+var _trotha01$elm_webaudio$Styles_Styles$dropdownDisabled = {
+	ctor: '::',
+	_0: {ctor: '_Tuple2', _0: 'color', _1: 'rgba(0,0,0,.54'},
+	_1: {ctor: '[]'}
+};
+var _trotha01$elm_webaudio$Styles_Styles$dropdownInput = {
+	ctor: '::',
+	_0: {ctor: '_Tuple2', _0: 'padding', _1: '6px 12px 8px 15px'},
+	_1: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'margin', _1: '0'},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'border', _1: '1px solid rgba(0,0,0,.17)'},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'border-radius', _1: '4px'},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'background-color', _1: 'white'},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'display', _1: 'flex'},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'alignItems', _1: 'center'},
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+var _trotha01$elm_webaudio$Styles_Styles$dropdownContainer = {
+	ctor: '::',
+	_0: {ctor: '_Tuple2', _0: 'position', _1: 'relative'},
+	_1: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'margin', _1: '16px'},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'width', _1: '216px'},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'display', _1: 'inline-block'},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'fontFamily', _1: 'sans-serif'},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'fontSize', _1: '16px'},
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		}
+	}
+};
+var _trotha01$elm_webaudio$Styles_Styles$mainContainer = {
+	ctor: '::',
+	_0: {ctor: '_Tuple2', _0: 'height', _1: '100%'},
+	_1: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'background-color', _1: '#fafafa'},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'padding', _1: '16px'},
+			_1: {ctor: '[]'}
+		}
+	}
+};

@@ -1,0 +1,769 @@
+var _trotha01$elm_webaudio$Main$onClick = function (message) {
+	return A3(
+		_elm_lang$html$Html_Events$onWithOptions,
+		'click',
+		{stopPropagation: true, preventDefault: false},
+		_elm_lang$core$Json_Decode$succeed(message));
+};
+var _trotha01$elm_webaudio$Main$playNote = function (frequency) {
+	return A2(
+		_trotha01$elm_webaudio$WebAudio$stopOscillator,
+		3.0,
+		A2(
+			_trotha01$elm_webaudio$WebAudio$startOscillator,
+			0.0,
+			A4(
+				_trotha01$elm_webaudio$WebAudio$connectNodes,
+				_trotha01$elm_webaudio$WebAudio$getDestinationNode(_trotha01$elm_webaudio$WebAudio$DefaultContext),
+				0,
+				0,
+				A3(
+					_trotha01$elm_webaudio$WebAudio$tapNode,
+					function (_) {
+						return _.frequency;
+					},
+					function (freq) {
+						return A2(_trotha01$elm_webaudio$WebAudio$setValue, frequency, freq);
+					},
+					A2(_trotha01$elm_webaudio$WebAudio$createOscillatorNode, _trotha01$elm_webaudio$WebAudio$DefaultContext, _trotha01$elm_webaudio$WebAudio$Sine)))));
+};
+var _trotha01$elm_webaudio$Main$frequency = function (note) {
+	return 220 * Math.pow(2, note / 12);
+};
+var _trotha01$elm_webaudio$Main$third = function (note) {
+	return _trotha01$elm_webaudio$Main$frequency(note + 4);
+};
+var _trotha01$elm_webaudio$Main$minorthird = function (note) {
+	return _trotha01$elm_webaudio$Main$frequency(note + 3);
+};
+var _trotha01$elm_webaudio$Main$fifth = function (note) {
+	return _trotha01$elm_webaudio$Main$frequency(note + 7);
+};
+var _trotha01$elm_webaudio$Main$dimfifth = function (note) {
+	return _trotha01$elm_webaudio$Main$frequency(note + 6);
+};
+var _trotha01$elm_webaudio$Main$sixth = function (note) {
+	return _trotha01$elm_webaudio$Main$frequency(note + 9);
+};
+var _trotha01$elm_webaudio$Main$seventh = function (note) {
+	return _trotha01$elm_webaudio$Main$frequency(note + 10);
+};
+var _trotha01$elm_webaudio$Main$rootPosition = _elm_lang$core$Dict$fromList(
+	{
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'I', _1: 0},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'II', _1: 2},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'III', _1: 4},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'IV', _1: 5},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'V', _1: 7},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'VI', _1: 9},
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		}
+	});
+var _trotha01$elm_webaudio$Main$roots = _elm_lang$core$Dict$keys(_trotha01$elm_webaudio$Main$rootPosition);
+var _trotha01$elm_webaudio$Main$tonicPosition = _elm_lang$core$Dict$fromList(
+	{
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'A', _1: 0},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'A#/Bb', _1: 1},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'B', _1: 2},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'C', _1: 3},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'C#/Db', _1: 4},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'D', _1: 5},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'D#/Eb', _1: 6},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'E', _1: 7},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'F', _1: 8},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 'F#/Gb', _1: 9},
+											_1: {
+												ctor: '::',
+												_0: {ctor: '_Tuple2', _0: 'G', _1: 10},
+												_1: {
+													ctor: '::',
+													_0: {ctor: '_Tuple2', _0: 'G#/Ab', _1: 11},
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+var _trotha01$elm_webaudio$Main$tonics = _elm_lang$core$Dict$keys(_trotha01$elm_webaudio$Main$tonicPosition);
+var _trotha01$elm_webaudio$Main$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'TonicPicked':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							pickedTonic: _elm_lang$core$Maybe$Just(_p0._0),
+							is1Open: false
+						}),
+					{ctor: '[]'});
+			case 'RootPicked':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							pickedRoot: _elm_lang$core$Maybe$Just(_p0._0),
+							is2Open: false
+						}),
+					{ctor: '[]'});
+			case 'ChordPicked':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{pickedChord: _p0._0}),
+					{ctor: '[]'});
+			case 'DropDown1Clicked':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{is1Open: !model.is1Open, is2Open: false}),
+					{ctor: '[]'});
+			case 'DropDown2Clicked':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{is2Open: !model.is2Open, is1Open: false}),
+					{ctor: '[]'});
+			case 'Blur':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{is1Open: false}),
+					{ctor: '[]'});
+			case 'Play':
+				var rootName = A2(_elm_lang$core$Maybe$withDefault, 'I', model.pickedRoot);
+				var tonicName = A2(_elm_lang$core$Maybe$withDefault, 'A', model.pickedTonic);
+				var tonic = A2(
+					_elm_lang$core$Maybe$withDefault,
+					0,
+					A2(_elm_lang$core$Dict$get, tonicName, _trotha01$elm_webaudio$Main$tonicPosition));
+				var root = tonic + A2(
+					_elm_lang$core$Maybe$withDefault,
+					0,
+					A2(_elm_lang$core$Dict$get, rootName, _trotha01$elm_webaudio$Main$rootPosition));
+				var _p1 = _trotha01$elm_webaudio$Main$playNote(
+					_trotha01$elm_webaudio$Main$frequency(root));
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{is1Open: false}),
+					{ctor: '[]'});
+			default:
+				var _p2 = model.pickedChord;
+				switch (_p2.ctor) {
+					case 'Major':
+						var rootName = A2(_elm_lang$core$Maybe$withDefault, 'I', model.pickedRoot);
+						var tonicName = A2(_elm_lang$core$Maybe$withDefault, 'A', model.pickedTonic);
+						var tonic = A2(
+							_elm_lang$core$Maybe$withDefault,
+							0,
+							A2(_elm_lang$core$Dict$get, tonicName, _trotha01$elm_webaudio$Main$tonicPosition));
+						var root = tonic + A2(
+							_elm_lang$core$Maybe$withDefault,
+							0,
+							A2(_elm_lang$core$Dict$get, rootName, _trotha01$elm_webaudio$Main$rootPosition));
+						var _p3 = _trotha01$elm_webaudio$Main$playNote(
+							_trotha01$elm_webaudio$Main$frequency(root));
+						var _p4 = _trotha01$elm_webaudio$Main$playNote(
+							_trotha01$elm_webaudio$Main$third(root));
+						var _p5 = _trotha01$elm_webaudio$Main$playNote(
+							_trotha01$elm_webaudio$Main$fifth(root));
+						return A2(
+							_elm_lang$core$Platform_Cmd_ops['!'],
+							_elm_lang$core$Native_Utils.update(
+								model,
+								{is1Open: false}),
+							{ctor: '[]'});
+					case 'Minor':
+						var rootName = A2(_elm_lang$core$Maybe$withDefault, 'I', model.pickedRoot);
+						var tonicName = A2(_elm_lang$core$Maybe$withDefault, 'A', model.pickedTonic);
+						var tonic = A2(
+							_elm_lang$core$Maybe$withDefault,
+							0,
+							A2(_elm_lang$core$Dict$get, tonicName, _trotha01$elm_webaudio$Main$tonicPosition));
+						var root = tonic + A2(
+							_elm_lang$core$Maybe$withDefault,
+							0,
+							A2(_elm_lang$core$Dict$get, rootName, _trotha01$elm_webaudio$Main$rootPosition));
+						var _p6 = _trotha01$elm_webaudio$Main$playNote(
+							_trotha01$elm_webaudio$Main$frequency(root));
+						var _p7 = _trotha01$elm_webaudio$Main$playNote(
+							_trotha01$elm_webaudio$Main$minorthird(root));
+						var _p8 = _trotha01$elm_webaudio$Main$playNote(
+							_trotha01$elm_webaudio$Main$fifth(root));
+						return A2(
+							_elm_lang$core$Platform_Cmd_ops['!'],
+							_elm_lang$core$Native_Utils.update(
+								model,
+								{is1Open: false}),
+							{ctor: '[]'});
+					case 'DominantSeventh':
+						var rootName = A2(_elm_lang$core$Maybe$withDefault, 'I', model.pickedRoot);
+						var tonicName = A2(_elm_lang$core$Maybe$withDefault, 'A', model.pickedTonic);
+						var tonic = A2(
+							_elm_lang$core$Maybe$withDefault,
+							0,
+							A2(_elm_lang$core$Dict$get, tonicName, _trotha01$elm_webaudio$Main$tonicPosition));
+						var root = tonic + A2(
+							_elm_lang$core$Maybe$withDefault,
+							0,
+							A2(_elm_lang$core$Dict$get, rootName, _trotha01$elm_webaudio$Main$rootPosition));
+						var _p9 = _trotha01$elm_webaudio$Main$playNote(
+							_trotha01$elm_webaudio$Main$frequency(root));
+						var _p10 = _trotha01$elm_webaudio$Main$playNote(
+							_trotha01$elm_webaudio$Main$third(root));
+						var _p11 = _trotha01$elm_webaudio$Main$playNote(
+							_trotha01$elm_webaudio$Main$fifth(root));
+						var _p12 = _trotha01$elm_webaudio$Main$playNote(
+							_trotha01$elm_webaudio$Main$seventh(root));
+						return A2(
+							_elm_lang$core$Platform_Cmd_ops['!'],
+							_elm_lang$core$Native_Utils.update(
+								model,
+								{is1Open: false}),
+							{ctor: '[]'});
+					default:
+						var rootName = A2(_elm_lang$core$Maybe$withDefault, 'I', model.pickedRoot);
+						var tonicName = A2(_elm_lang$core$Maybe$withDefault, 'A', model.pickedTonic);
+						var tonic = A2(
+							_elm_lang$core$Maybe$withDefault,
+							0,
+							A2(_elm_lang$core$Dict$get, tonicName, _trotha01$elm_webaudio$Main$tonicPosition));
+						var root = tonic + A2(
+							_elm_lang$core$Maybe$withDefault,
+							0,
+							A2(_elm_lang$core$Dict$get, rootName, _trotha01$elm_webaudio$Main$rootPosition));
+						var _p13 = _trotha01$elm_webaudio$Main$playNote(
+							_trotha01$elm_webaudio$Main$frequency(root));
+						var _p14 = _trotha01$elm_webaudio$Main$playNote(
+							_trotha01$elm_webaudio$Main$minorthird(root));
+						var _p15 = _trotha01$elm_webaudio$Main$playNote(
+							_trotha01$elm_webaudio$Main$dimfifth(root));
+						var _p16 = _trotha01$elm_webaudio$Main$playNote(
+							_trotha01$elm_webaudio$Main$sixth(root));
+						return A2(
+							_elm_lang$core$Platform_Cmd_ops['!'],
+							_elm_lang$core$Native_Utils.update(
+								model,
+								{is1Open: false}),
+							{ctor: '[]'});
+				}
+		}
+	});
+var _trotha01$elm_webaudio$Main$Model = F5(
+	function (a, b, c, d, e) {
+		return {pickedTonic: a, pickedRoot: b, pickedChord: c, is1Open: d, is2Open: e};
+	});
+var _trotha01$elm_webaudio$Main$PlayChord = {ctor: 'PlayChord'};
+var _trotha01$elm_webaudio$Main$Play = {ctor: 'Play'};
+var _trotha01$elm_webaudio$Main$Blur = {ctor: 'Blur'};
+var _trotha01$elm_webaudio$Main$subscriptions = function (model) {
+	return model.is1Open ? _elm_lang$mouse$Mouse$clicks(
+		_elm_lang$core$Basics$always(_trotha01$elm_webaudio$Main$Blur)) : (model.is2Open ? _elm_lang$mouse$Mouse$clicks(
+		_elm_lang$core$Basics$always(_trotha01$elm_webaudio$Main$Blur)) : _elm_lang$core$Platform_Sub$none);
+};
+var _trotha01$elm_webaudio$Main$DropDown2Clicked = {ctor: 'DropDown2Clicked'};
+var _trotha01$elm_webaudio$Main$DropDown1Clicked = {ctor: 'DropDown1Clicked'};
+var _trotha01$elm_webaudio$Main$ChordPicked = function (a) {
+	return {ctor: 'ChordPicked', _0: a};
+};
+var _trotha01$elm_webaudio$Main$RootPicked = function (a) {
+	return {ctor: 'RootPicked', _0: a};
+};
+var _trotha01$elm_webaudio$Main$viewRoot = function (root) {
+	return A2(
+		_elm_lang$html$Html$li,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$style(_trotha01$elm_webaudio$Styles_Styles$dropdownListItem),
+			_1: {
+				ctor: '::',
+				_0: _trotha01$elm_webaudio$Main$onClick(
+					_trotha01$elm_webaudio$Main$RootPicked(root)),
+				_1: {ctor: '[]'}
+			}
+		},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(root),
+			_1: {ctor: '[]'}
+		});
+};
+var _trotha01$elm_webaudio$Main$TonicPicked = function (a) {
+	return {ctor: 'TonicPicked', _0: a};
+};
+var _trotha01$elm_webaudio$Main$viewTonic = function (tonic) {
+	return A2(
+		_elm_lang$html$Html$li,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$style(_trotha01$elm_webaudio$Styles_Styles$dropdownListItem),
+			_1: {
+				ctor: '::',
+				_0: _trotha01$elm_webaudio$Main$onClick(
+					_trotha01$elm_webaudio$Main$TonicPicked(tonic)),
+				_1: {ctor: '[]'}
+			}
+		},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(tonic),
+			_1: {ctor: '[]'}
+		});
+};
+var _trotha01$elm_webaudio$Main$DimSeventh = {ctor: 'DimSeventh'};
+var _trotha01$elm_webaudio$Main$DominantSeventh = {ctor: 'DominantSeventh'};
+var _trotha01$elm_webaudio$Main$Minor = {ctor: 'Minor'};
+var _trotha01$elm_webaudio$Main$Major = {ctor: 'Major'};
+var _trotha01$elm_webaudio$Main$init = A2(
+	_elm_lang$core$Platform_Cmd_ops['!'],
+	{pickedTonic: _elm_lang$core$Maybe$Nothing, pickedRoot: _elm_lang$core$Maybe$Nothing, pickedChord: _trotha01$elm_webaudio$Main$Major, is1Open: false, is2Open: false},
+	{ctor: '[]'});
+var _trotha01$elm_webaudio$Main$view = function (model) {
+	var displayStyle2 = model.is2Open ? {ctor: '_Tuple2', _0: 'display', _1: 'block'} : {ctor: '_Tuple2', _0: 'display', _1: 'none'};
+	var displayStyle1 = model.is1Open ? {ctor: '_Tuple2', _0: 'display', _1: 'block'} : {ctor: '_Tuple2', _0: 'display', _1: 'none'};
+	var selectedText2 = A2(_elm_lang$core$Maybe$withDefault, '-- pick a root --', model.pickedRoot);
+	var selectedText1 = A2(_elm_lang$core$Maybe$withDefault, '-- pick a key --', model.pickedTonic);
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(_trotha01$elm_webaudio$Styles_Styles$text),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('// REFRESH TO PLAY NEW CHORD //'),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(_trotha01$elm_webaudio$Styles_Styles$text),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('Pick a key and a chord in the key. For example, you can pick the key \'A\' and the third chord \'III\' in the key, which is an \'E\' chord.'),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$style(_trotha01$elm_webaudio$Styles_Styles$dropdownContainer),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$p,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$style(_trotha01$elm_webaudio$Styles_Styles$dropdownInput),
+									_1: {
+										ctor: '::',
+										_0: _trotha01$elm_webaudio$Main$onClick(_trotha01$elm_webaudio$Main$DropDown1Clicked),
+										_1: {ctor: '[]'}
+									}
+								},
+								{
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$span,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$style(_trotha01$elm_webaudio$Styles_Styles$dropdownText),
+											_1: {ctor: '[]'}
+										},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text(selectedText1),
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$span,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text(' ▾'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$ul,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$style(
+											{ctor: '::', _0: displayStyle1, _1: _trotha01$elm_webaudio$Styles_Styles$dropdownList}),
+										_1: {ctor: '[]'}
+									},
+									A2(_elm_lang$core$List$map, _trotha01$elm_webaudio$Main$viewTonic, _trotha01$elm_webaudio$Main$tonics)),
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$div,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$style(_trotha01$elm_webaudio$Styles_Styles$dropdownContainer),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$p,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$style(_trotha01$elm_webaudio$Styles_Styles$dropdownInput),
+										_1: {
+											ctor: '::',
+											_0: _trotha01$elm_webaudio$Main$onClick(_trotha01$elm_webaudio$Main$DropDown2Clicked),
+											_1: {ctor: '[]'}
+										}
+									},
+									{
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$span,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$style(_trotha01$elm_webaudio$Styles_Styles$dropdownText),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text(selectedText2),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$span,
+												{ctor: '[]'},
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html$text(' ▾'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$ul,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$style(
+												{ctor: '::', _0: displayStyle2, _1: _trotha01$elm_webaudio$Styles_Styles$dropdownList}),
+											_1: {ctor: '[]'}
+										},
+										A2(_elm_lang$core$List$map, _trotha01$elm_webaudio$Main$viewRoot, _trotha01$elm_webaudio$Main$roots)),
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$div,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$button,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$style(_trotha01$elm_webaudio$Styles_Styles$button),
+											_1: {
+												ctor: '::',
+												_0: _trotha01$elm_webaudio$Main$onClick(_trotha01$elm_webaudio$Main$Play),
+												_1: {ctor: '[]'}
+											}
+										},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text('Play the root'),
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$div,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$style(_trotha01$elm_webaudio$Styles_Styles$text),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('Use these buttons to change the kind of chord you\'re playing. Do you hear a difference?'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$div,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$style(_trotha01$elm_webaudio$Styles_Styles$text),
+											_1: {ctor: '[]'}
+										},
+										{
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$fieldset,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$style(_trotha01$elm_webaudio$Styles_Styles$fieldset),
+													_1: {ctor: '[]'}
+												},
+												{
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$label,
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$style(_trotha01$elm_webaudio$Styles_Styles$text),
+															_1: {ctor: '[]'}
+														},
+														{
+															ctor: '::',
+															_0: A2(
+																_elm_lang$html$Html$input,
+																{
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Attributes$type_('radio'),
+																	_1: {
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Attributes$name('chord'),
+																		_1: {
+																			ctor: '::',
+																			_0: _trotha01$elm_webaudio$Main$onClick(
+																				_trotha01$elm_webaudio$Main$ChordPicked(_trotha01$elm_webaudio$Main$Major)),
+																			_1: {ctor: '[]'}
+																		}
+																	}
+																},
+																{ctor: '[]'}),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html$text('Major'),
+																_1: {ctor: '[]'}
+															}
+														}),
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_elm_lang$html$Html$label,
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$style(_trotha01$elm_webaudio$Styles_Styles$text),
+																_1: {ctor: '[]'}
+															},
+															{
+																ctor: '::',
+																_0: A2(
+																	_elm_lang$html$Html$input,
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Attributes$type_('radio'),
+																		_1: {
+																			ctor: '::',
+																			_0: _elm_lang$html$Html_Attributes$name('chord'),
+																			_1: {
+																				ctor: '::',
+																				_0: _trotha01$elm_webaudio$Main$onClick(
+																					_trotha01$elm_webaudio$Main$ChordPicked(_trotha01$elm_webaudio$Main$Minor)),
+																				_1: {ctor: '[]'}
+																			}
+																		}
+																	},
+																	{ctor: '[]'}),
+																_1: {
+																	ctor: '::',
+																	_0: _elm_lang$html$Html$text('Minor'),
+																	_1: {ctor: '[]'}
+																}
+															}),
+														_1: {
+															ctor: '::',
+															_0: A2(
+																_elm_lang$html$Html$label,
+																{
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Attributes$style(_trotha01$elm_webaudio$Styles_Styles$text),
+																	_1: {ctor: '[]'}
+																},
+																{
+																	ctor: '::',
+																	_0: A2(
+																		_elm_lang$html$Html$input,
+																		{
+																			ctor: '::',
+																			_0: _elm_lang$html$Html_Attributes$type_('radio'),
+																			_1: {
+																				ctor: '::',
+																				_0: _elm_lang$html$Html_Attributes$name('chord'),
+																				_1: {
+																					ctor: '::',
+																					_0: _trotha01$elm_webaudio$Main$onClick(
+																						_trotha01$elm_webaudio$Main$ChordPicked(_trotha01$elm_webaudio$Main$DominantSeventh)),
+																					_1: {ctor: '[]'}
+																				}
+																			}
+																		},
+																		{ctor: '[]'}),
+																	_1: {
+																		ctor: '::',
+																		_0: _elm_lang$html$Html$text('Dominant Seventh'),
+																		_1: {ctor: '[]'}
+																	}
+																}),
+															_1: {
+																ctor: '::',
+																_0: A2(
+																	_elm_lang$html$Html$label,
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Attributes$style(_trotha01$elm_webaudio$Styles_Styles$text),
+																		_1: {ctor: '[]'}
+																	},
+																	{
+																		ctor: '::',
+																		_0: A2(
+																			_elm_lang$html$Html$input,
+																			{
+																				ctor: '::',
+																				_0: _elm_lang$html$Html_Attributes$type_('radio'),
+																				_1: {
+																					ctor: '::',
+																					_0: _elm_lang$html$Html_Attributes$name('chord'),
+																					_1: {
+																						ctor: '::',
+																						_0: _trotha01$elm_webaudio$Main$onClick(
+																							_trotha01$elm_webaudio$Main$ChordPicked(_trotha01$elm_webaudio$Main$DimSeventh)),
+																						_1: {ctor: '[]'}
+																					}
+																				}
+																			},
+																			{ctor: '[]'}),
+																		_1: {
+																			ctor: '::',
+																			_0: _elm_lang$html$Html$text('Diminished Seventh'),
+																			_1: {ctor: '[]'}
+																		}
+																	}),
+																_1: {ctor: '[]'}
+															}
+														}
+													}
+												}),
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$div,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$button,
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$style(_trotha01$elm_webaudio$Styles_Styles$button),
+														_1: {
+															ctor: '::',
+															_0: _trotha01$elm_webaudio$Main$onClick(_trotha01$elm_webaudio$Main$PlayChord),
+															_1: {ctor: '[]'}
+														}
+													},
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html$text('Play the chord'),
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		});
+};
+var _trotha01$elm_webaudio$Main$main = _elm_lang$html$Html$program(
+	{init: _trotha01$elm_webaudio$Main$init, view: _trotha01$elm_webaudio$Main$view, update: _trotha01$elm_webaudio$Main$update, subscriptions: _trotha01$elm_webaudio$Main$subscriptions})();
